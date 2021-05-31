@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Principal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Playfair Display', serif;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        section {
+            width: 80vw;
+            margin: auto;
+
+
+        }
+
+        div {
+            text-align: center;
+        }
+
+        button.btnAgregar {
+            color: rgb(0, 204, 255);
+            margin: 2px;
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: rgba(127, 255, 212, 0.342);
+            box-shadow: 5px -5px 10px rgba(15, 0, 0, 0.349);
+
+        }
+
+        div#contTablaListado {
+            margin-top: 20px;
+            border: solid;
+
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Listado de personas</h1>
+    </header>
+    <section>
+        <div class="boton">
+            <a href="#" th:href="@{/formulario?id=0}">
+                <button class="btnAgregar">
+                    <span>Agregar Persona</span>
+                </button>
+            </a>
+
+        </div>
+        <div id="contTablaListado">
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Ocupación</th>
+                        <th>Opción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="persona : ${listPersonas}">
+                        <td th:text="${persona.nombre}"></td>
+                        <td th:text="${persona.apellido}"></td>
+                        <td th:text="${persona.correo}"></td>
+                        <td th:text="${persona.ocupacion}"></td>
+                        <td>
+                            <a href="#" th:href="@{/formulario?id=__${persona.id}__}">
+                                <button style="background-color: rgb(93, 180, 93);">
+                                    <svg width="25px" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </a>
+                            
+                            <a href="#" th:href="@{/removepersona?id=__${persona.id}__}">
+                                <button style="background-color: rgba(255, 0, 0, 0.445);">
+                                    <svg width="25px" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </a>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</body>
+
+</html>
